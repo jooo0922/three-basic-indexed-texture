@@ -1,0 +1,58 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#container {
+  /* 자식요소인 #labels가 이 요소를 기준으로 position을 지정해줄 수 있도록 함 */
+  position: relative;
+  /* 브라우저 사이즈의 100%로 컨테이너를 맞춤 */
+  width: 100%;
+  height: 100%;
+  /* labels에 추가되는 이름표 요소의 위치는 계속 바뀌는데, 만약 #container를 벗어나면 안보이도록 함 */
+  overflow: hidden;
+}
+
+#canvas {
+  /* 부모요소인 #container 사이즈의 100%로 맞춤 */
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#labels {
+  /* #container를 기준으로 왼쪽 위에 배치해서, 캔버스 위에 겹치도록 함 */
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* labels의 자식노드들의 z-index 값이 0 ~ 100000 사이의 정수로 할당될 때 새로운 쌓임맥락을 생성해서 아무리 z-index가 커도 다른 요소 위로 올라가지 않도록 함 */
+  z-index: 0;
+  color: white;
+}
+
+/* labels의 자식노드로 추가해 줄 이름표 요소 */
+#labels>div {
+  /* 초기의 각 이름표 요소들의 위치값은 #labels를 기준으로 왼쪽 위에 배치하여 캔버스 위에 겹치게 자리잡도록 함 */
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  font-size: small;
+  /* 사용자가 텍스트를 마우스로 선택하지 못하도록 함 */
+  user-select: none;
+  /* 각 이름표 요소의 텍스트 주변으로 1px 만큼의 검은색 테두리를 그려줌 */
+  text-shadow: 
+    -1px -1px 0 #000,
+    0px -1px 0 #000,
+    1px -1px 0 #000,
+    1px 0px 0 #000,
+    1px 1px 0 #000,
+    0px 1px 0 #000,
+    -1px 1px 0 #000,
+    -1px 0px 0 #000;
+}
+
+#labels>div:hover {
+  color: red;
+}
